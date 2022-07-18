@@ -1,18 +1,19 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
-  extends: ["plugin:vue/essential", "@vue/standard"],
+  extends: ['plugin:vue/essential', '@vue/standard'],
   parserOptions: {
-    parser: "@babel/eslint-parser",
+    parser: '@babel/eslint-parser'
   },
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    quotes: "error", // 默认
-    quotes: "warn", // 修改为警告
-    quotes: "off", // 修改不校验
-    'space-before-function-paren': 'off'
-  },
-};
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    quotes: 'error', // 默认
+    quotes: 'warn', // 修改为警告
+    quotes: 'off', // 修改不校验
+    'space-before-function-paren': 'off',
+    'vue/multi-word-component-names': 'off'
+  }
+}
