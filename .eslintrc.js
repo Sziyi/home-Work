@@ -14,6 +14,7 @@ module.exports = {
     quotes: 'warn', // 修改为警告
     quotes: 'off', // 修改不校验
     'space-before-function-paren': 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    'no-unreachable': 'off'
   }
 }
