@@ -14,6 +14,11 @@ const routes = [
     path: '/table',
     name: 'Table',
     component: Table
+  },
+  {
+    path: '/advert',
+    name: 'advert',
+    component: () => import('../views/Advert.vue')
   }
 ]
 
