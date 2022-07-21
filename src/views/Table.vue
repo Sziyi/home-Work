@@ -1,34 +1,81 @@
 <template>
   <div class="home">
-    <song-table init-request :format="formatData" @onLoad="onLoad"  :column="column" index checkbox :data="data_1" :params="params_1" url="/name/" method="post">
+    <el-button type="primary" @click="getCheckList"
+      >测试获取复选框选中的数据</el-button
+    >
+    <song-table
+      init-request
+      @onLoad="onLoad"
+      :check-list.sync="checkList"
+      :column="column"
+      index
+      checkbox
+      :data="data_1"
+      :params="params_1"
+      url="/name/"
+      method="post"
+    >
       <template v-slot:operation="slot">
-        <song-button type="primary" @click="handleEdit(slot.data)">编辑</song-button>
-        <song-button type="danger" @click="handleDelete(slot.data)">删除</song-button>
-        <song-button type="success" @click="handleEdit(slot.data)">编辑</song-button>
-        <song-button type="warning" @click="handleDelete(slot.data)">删除</song-button>
+        <song-button type="primary" @click="handleEdit(slot.data)"
+          >编辑</song-button
+        >
+        <song-button type="danger" @click="handleDelete(slot.data)"
+          >删除</song-button
+        >
+        <song-button type="success" @click="handleEdit(slot.data)"
+          >编辑</song-button
+        >
+        <song-button type="warning" @click="handleDelete(slot.data)"
+          >删除</song-button
+        >
       </template>
     </song-table>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       column: [
-        { label: '姓名', prop: 'name' },
-        { label: '性别', prop: 'gender' },
-        { label: '创建时间', prop: 'create_date' },
-        { label: '操作', type: 'slot', slot_name: 'operation', prop: 'operation' }
+        {
+          label: '姓名',
+          prop: 'name'
+        },
+        {
+          label: '创建时间',
+          prop: 'create_date',
+          sort: true,
+          sortBy: 'a.xx'
+        },
+        {
+          label: '广告图片',
+          prop: 'url',
+          type: 'image'
+        },
+        {
+          label: '操作',
+          type: 'slot',
+          slot_name: 'operation',
+          prop: 'operation'
+        }
       ],
       data_1: {
         name: 'jack'
       },
       params_1: {
         name: 'rose'
-      }
+      },
+      checkList: []
+    }
+  },
+  watch: {
+    checkList: {
+      handler(val) {
+        console.log(val)
+      },
+      deep: true
     }
   },
   components: {
@@ -36,18 +83,21 @@ export default {
     songTable: () => import('../components/table/index.vue')
   },
   methods: {
-    handleEdit (row) {
+    getCheckList() {
+      console.log(this.checkList)
+    },
+    handleEdit(row) {
       console.log(row)
     },
-    handleDelete (row) {
+    handleDelete(row) {
       console.log(row)
     },
-    onLoad (data) {
+    onLoad(data) {
       console.log(data)
     },
-    formatData (data) {
+    formatData(data) {
       const tableData = data.data
-      tableData.forEach(item => {
+      tableData.forEach((item) => {
         item.gender = item.gender === '男' ? 1 : 0
       })
       return tableData
@@ -55,3 +105,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>
